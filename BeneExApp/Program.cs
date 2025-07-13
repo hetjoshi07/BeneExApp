@@ -1,4 +1,6 @@
 using BeneExApp.Data;
+using BeneExApp.Mappings;
+using BeneExApp.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<BeneExAppContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("BeneExConnectionString")));
+
+builder.Services.AddAutoMapper(typeof(MappingProfiles));
+
+builder.Services.AddScoped<IBeneficiaryRepository, BeneficiaryRepository>();
+builder.Services.AddScoped<IExpenditureRepository, ExpenditureRepository>();
 
 var app = builder.Build();
 

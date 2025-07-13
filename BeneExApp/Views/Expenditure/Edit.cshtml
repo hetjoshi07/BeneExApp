@@ -1,0 +1,90 @@
+﻿@model BeneExApp.DTOs.ExpenditureRequestDto
+@{
+    ViewData["Title"] = "Edit Expenditure";
+}
+
+<h2 class="text-primary mb-4">@ViewData["Title"]</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "Expenditure", FormMethod.Post, new { id = "expenditureForm", @class = "needs-validation", novalidate = "novalidate" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="FinancialYear">Financial Year<span class="text-danger m-1">*</span></label>
+                        <input asp-for="FinancialYear" class="form-control" placeholder="Ex.2020-21"/>
+                        <span asp-validation-for="FinancialYear" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="Date">Date<span class="text-danger m-1">*</span></label>
+                        <input asp-for="Date" class="form-control" type="date" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="BeneficiaryId">Beneficiary<span class="text-danger m-1">*</span></label>
+                        <select asp-for="BeneficiaryId" class="form-control" asp-items="ViewBag.Beneficiaries"></select>
+                        <span asp-validation-for="BeneficiaryId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ProjectName">Project Name<span class="text-danger m-1">*</span></label>
+                        <input asp-for="ProjectName" class="form-control" />
+                        <span asp-validation-for="ProjectName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="ProjectCode">Project Code<span class="text-danger m-1">*</span></label>
+                        <input asp-for="ProjectCode" class="form-control" />
+                        <span asp-validation-for="ProjectCode" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="ProjectDetail">Project Detail<span class="text-danger m-1">*</span></label>
+                        <textarea asp-for="ProjectDetail" class="form-control"></textarea>
+                        <span asp-validation-for="ProjectDetail" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TotalAmount">Total Amount<span class="text-danger m-1">*</span></label>
+                        <input asp-for="TotalAmount" class="form-control" />
+                        <span asp-validation-for="TotalAmount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DeductionAmount">Deduction Amount<span class="text-danger m-1">*</span></label>
+                        <input asp-for="DeductionAmount" class="form-control" />
+                        <span asp-validation-for="DeductionAmount" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label asp-for="Remarks">Remarks<span class="text-danger m-1">*</span></label>
+                        <textarea asp-for="Remarks" class="form-control"></textarea>
+                        <span asp-validation-for="Remarks" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a asp-action="List" class="btn btn-secondary ml-2">Cancel</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

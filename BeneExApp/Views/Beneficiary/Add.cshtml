@@ -1,0 +1,93 @@
+﻿@model BeneExApp.DTOs.BeneficiaryRequestDto
+
+@{
+    ViewData["Title"] = "Add New Beneficiary";
+}
+
+<h2 class="text-primary mb-4">@ViewData["Title"]</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        @using (Html.BeginForm("Add", "Beneficiary", FormMethod.Post, new { id = "beneficiaryForm", @class = "needs-validation", novalidate = "novalidate" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="Name" class="form-label">Name<span class="text-danger m-1">*</span></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Email" class="form-label">Email<span class="text-danger m-1">*</span></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="MobileNo" class="form-label">MobileNo<span class="text-danger m-1">*</span></label>
+                    <input asp-for="MobileNo" class="form-control" />
+                    <span asp-validation-for="MobileNo" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="PhoneNo" class="form-label">PhoneNo<span class="text-danger m-1">*</span></label>
+                    <input asp-for="PhoneNo" class="form-control" />
+                    <span asp-validation-for="PhoneNo" class="text-danger small"></span>
+                </div>
+
+                <div class="col-12">
+                    <label asp-for="Address" class="form-label">Address<span class="text-danger m-1">*</span></label>
+                    <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Address" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="BankName" class="form-label">BankName<span class="text-danger m-1">*</span></label>
+                    <input asp-for="BankName" class="form-control" />
+                    <span asp-validation-for="BankName" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="BranchName" class="form-label">BranchName<span class="text-danger m-1">*</span></label>
+                    <input asp-for="BranchName" class="form-control" />
+                    <span asp-validation-for="BranchName" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="AccountNo" class="form-label">AccountNo<span class="text-danger m-1">*</span></label>
+                    <input asp-for="AccountNo" class="form-control" />
+                    <span asp-validation-for="AccountNo" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="IFSCCode" class="form-label">IFSCCode<span class="text-danger m-1">*</span></label>
+                    <input asp-for="IFSCCode" class="form-control" oninput="this.value = this.value.toUpperCase();"/>
+                    <span asp-validation-for="IFSCCode" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="PANNo" class="form-label">PANNo<span class="text-danger m-1">*</span></label>
+                    <input asp-for="PANNo" class="form-control" oninput="this.value = this.value.toUpperCase();"/>
+                    <span asp-validation-for="PANNo" class="text-danger small"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="GSTNo" class="form-label">GSTNo<span class="text-danger m-1">*</span></label>
+                    <input asp-for="GSTNo" class="form-control" oninput="this.value = this.value.toUpperCase();"/>
+                    <span asp-validation-for="GSTNo" class="text-danger small"></span>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success ">Save</button>
+                <a asp-action="List" class="btn btn-secondary ml-2">Cancel</a>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+   @await Html.PartialAsync("_ValidationScriptsPartial");
+}

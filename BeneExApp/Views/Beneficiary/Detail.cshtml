@@ -1,0 +1,90 @@
+﻿ @model BeneExApp.DTOs.BeneficiaryRequestDto
+@{
+    ViewData["Title"] = "Beneficiary Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="card mt-3">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Name</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+
+            <dt class="col-sm-3">Email</dt>
+            <dd class="col-sm-9">@Model.Email</dd>
+
+            <dt class="col-sm-3">Mobile No</dt>
+            <dd class="col-sm-9">@Model.MobileNo</dd>
+
+            <dt class="col-sm-3">Phone No</dt>
+            <dd class="col-sm-9">@Model.PhoneNo</dd>
+
+            <dt class="col-sm-3">Address</dt>
+            <dd class="col-sm-9">@Model.Address</dd>
+
+            <dt class="col-sm-3">Bank Name</dt>
+            <dd class="col-sm-9">@Model.BankName</dd>
+
+            <dt class="col-sm-3">Branch Name</dt>
+            <dd class="col-sm-9">@Model.BranchName</dd>
+
+            <dt class="col-sm-3">Account No</dt>
+            <dd class="col-sm-9">@Model.AccountNo</dd>
+
+            <dt class="col-sm-3">IFSC Code</dt>
+            <dd class="col-sm-9">@Model.IFSCCode</dd>
+
+            <dt class="col-sm-3">PAN No</dt>
+            <dd class="col-sm-9">@Model.PANNo</dd>
+
+            <dt class="col-sm-3">GST No</dt>
+            <dd class="col-sm-9">@Model.GSTNo</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="card mt-3" id="showExpenditure">
+    <div class="card-body">
+        <h4 class="mt-4">Expenditures for @Model.Name</h4>
+        @if (Model.Expenditures != null && Model.Expenditures.Any())
+        {
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr>
+                        <th>Financial Year</th>
+                        <th>Date</th>
+                        <th>Project Name</th>
+                        <th>Beneficiary Name</th>
+                        <th>Total Amount</th>
+                        <th>Deduction</th>
+                        <th>Net Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var exp in Model.Expenditures)
+                    {
+                        <tr>
+                            <td>@exp.FinancialYear</td>
+                            <td>@exp.Date.ToShortDateString()</td>
+                            <td>@exp.ProjectName</td>
+                            <td>@Model.Name</td>
+                            <td>@exp.TotalAmount</td>
+                            <td>@exp.DeductionAmount</td>
+                            <td>@(exp.TotalAmount - exp.DeductionAmount)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p class="text-muted">No expenditures recorded for this beneficiary.</p>
+        }
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="List" class="btn btn-secondary">Back to List</a>
+</div>

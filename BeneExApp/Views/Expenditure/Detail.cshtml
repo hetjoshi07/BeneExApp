@@ -1,0 +1,47 @@
+﻿@model BeneExApp.DTOs.ExpenditureRequestDto
+@{
+    ViewData["Title"] = "Expenditure Details";
+}
+
+<h2 class="mb-4">@ViewData["Title"]</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <dl class="row g-2">
+            <dt class="col-sm-4">Financial Year</dt>
+            <dd class="col-sm-8">@Model.FinancialYear</dd>
+
+            <dt class="col-sm-4">Date</dt>
+            <dd class="col-sm-8">@Model.Date.ToString("dd-MM-yyyy")</dd>
+
+            <dt class="col-sm-4">Project Name</dt>
+            <dd class="col-sm-8">@Model.ProjectName</dd>
+
+            <dt class="col-sm-4">Project Code</dt>
+            <dd class="col-sm-8">@Model.ProjectCode</dd>
+
+            <dt class="col-sm-4">Project Detail</dt>
+            <dd class="col-sm-8">@Model.ProjectDetail</dd>
+
+            <dt class="col-sm-4">Beneficiary</dt>
+            <dd class="col-sm-8">@Model.Beneficiary?.Name</dd>
+
+            <dt class="col-sm-4">Total Amount</dt>
+            <dd class="col-sm-8">@Model.TotalAmount</dd>
+
+            <dt class="col-sm-4">Deduction Amount</dt>
+            <dd class="col-sm-8">@Model.DeductionAmount</dd>
+
+            <dt class="col-sm-4">Net Amount</dt>
+            <dd class="col-sm-8">@(@Model.TotalAmount - @Model.DeductionAmount)</dd>
+
+            <dt class="col-sm-4">Remarks</dt>
+            <dd class="col-sm-8">@Model.Remarks</dd>
+        </dl>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="List" class="btn btn-secondary">Back to List</a>
+</div>

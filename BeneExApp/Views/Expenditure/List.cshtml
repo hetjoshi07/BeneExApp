@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BeneExApp.DTOs.ExpenditureRequestDto>
+
+@{
+    ViewData["Title"] = "Expenditure List";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">@ViewData["Title"]</h2>
+    <div>
+        <a asp-action="Add" asp-controller="Expenditure" class="btn btn-primary me-2">
+            ➕ Add Expenditure
+        </a>
+    </div>
+</div>
+<hr />
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Financial Year</th>
+                <th>Date</th>
+                <th>Project Name</th>
+                <th>Beneficiary</th>
+                <th>Total Amount</th>
+                <th>Deduction</th>
+                <th>Net Amount</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FinancialYear</td>
+                    <td>@item.Date.ToString("dd-MM-yyyy")</td>
+                    <td>@item.ProjectName</td>
+                    <td>@item.Beneficiary?.Name</td>
+                    <td>@item.TotalAmount</td>
+                    <td>@item.DeductionAmount</td>
+                    <td>@(item.TotalAmount - item.DeductionAmount)</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning ">Edit</a>
+                        <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-sm btn-info ">View</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="col-md-12">
+        <div class="alert alert-info" role="alert">
+            No expenditure found. Please add a expenditure.
+        </div>
+    </div>
+}

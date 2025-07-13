@@ -10,7 +10,7 @@ namespace BeneExApp.Domain
         public string Name { get; set; }
 
         [Required, EmailAddress, MaxLength(100)]
-        public string EmailID { get; set; }
+        public string Email { get; set; }
 
         [Required, MaxLength(15)]
         public string MobileNo { get; set; }
